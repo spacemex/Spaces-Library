@@ -19,21 +19,16 @@ import java.util.function.Supplier;
 public class AddItem extends LootModifier {
     public static final Supplier<Codec<AddItem>> CODEC = Suppliers.memoize(()->
             RecordCodecBuilder.create(inst-> codecStart(inst).and(ForgeRegistries.ITEMS.getCodec()
-                    .fieldOf("item").forGetter(m->m.item))
-                    .and(Codec.FLOAT
-                            .fieldOf("chance").forGetter(m->m.chance)).apply(inst, AddItem::new)));
+                    .fieldOf("item").forGetter(m->m.item)).apply(inst, AddItem::new)));
     private final Item item;
-    private Float chance;
-    public AddItem(LootItemCondition[] conditionsIn, Item item, @Nullable Float chance){
+
+    public AddItem(LootItemCondition[] conditionsIn, Item item){
         super(conditionsIn);
         this.item=item;
-        this.chance=chance;
     }
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-        if (chance == null){
-            chance = 0.3F;
-        }if (context.getRandom().nextFloat() >=chance) {
+         if (context.getRandom().nextFloat() >=0.3F) {
             ItemStack stack = new ItemStack(item, Math.min(1,3));
             generatedLoot.add(stack);
         }

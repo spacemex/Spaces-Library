@@ -21,15 +21,11 @@ import java.util.function.Supplier;
 public class AddEnchantable extends LootModifier {
     public static final Supplier<Codec<AddEnchantable>> CODEC = Suppliers.memoize(()->
             RecordCodecBuilder.create(inst-> codecStart(inst).and(ForgeRegistries.ITEMS.getCodec()
-                    .fieldOf("item").forGetter(m->m.item))
-                    .and(Codec.FLOAT.fieldOf("chance")
-                            .forGetter(m->m.chance)).apply(inst, AddEnchantable::new)));
+                    .fieldOf("item").forGetter(m->m.item)).apply(inst, AddEnchantable::new)));
     private final Item item;
-    private  Float chance;
-    public AddEnchantable(LootItemCondition[] conditionsIn, Item item, @Nullable Float chance){
+    public AddEnchantable(LootItemCondition[] conditionsIn, Item item){
         super(conditionsIn);
         this.item=item;
-        this.chance=chance;
     }
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
@@ -39,10 +35,7 @@ public class AddEnchantable extends LootModifier {
             ItemStack enchantedStack =enchantRandomlyFunction.apply(stack,context);
             generatedLoot.add(enchantedStack);
 
-        } if (chance == null){
-            chance = 0.3F;
-
-        }if (context.getRandom().nextFloat() >=chance) {
+        }else if (context.getRandom().nextFloat() >=0.3F) {
             ItemStack stack = new ItemStack(item, Math.min(1,3));
             generatedLoot.add(stack);
         }
