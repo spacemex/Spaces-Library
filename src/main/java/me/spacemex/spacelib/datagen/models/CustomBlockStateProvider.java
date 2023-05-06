@@ -31,7 +31,7 @@ public class CustomBlockStateProvider extends BlockStateProvider {
     protected ConfiguredModel[] states(BlockState state, CropBlock block, String modelName, String textureName){
         ConfiguredModel[] models = new ConfiguredModel[1];
         models[0]=new ConfiguredModel(models().crop(modelName + state.getValue(block.getAgeProperty()),
-                new ResourceLocation(modid,"block/"+textureName+state.getValue(block.getAgeProperty()))).renderType("cut_out"));
+                new ResourceLocation(modid,"block/"+textureName+state.getValue(block.getAgeProperty()))).renderType("cutout"));
 
         return models;
     }
