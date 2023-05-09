@@ -5,7 +5,7 @@ This Library Add Many Useful Features To Make Modding Easier
 
 Hammers Paxels Tree Fellers Excavators Mass Miners And Some Data Gen Stuff 
 
-Find It Here https://legacy.curseforge.com/minecraft/mc-mods/spaces-library
+Find It Here https://www.curseforge.com/minecraft/mc-mods/spaces-library
 
 How To Intgrate Into Your Own Project 
 
