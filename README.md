@@ -26,6 +26,6 @@ The Add  This To Your Dependencies
 
 ```java
 dependencies {
-    implementation fg.deobf('curse.maven:spacelib-856166:<fileVersion>')
+    implementation fg.deobf('curse.maven:spacelib-858858:<fileVersion>')
 }
 ```
